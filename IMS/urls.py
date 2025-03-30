@@ -17,12 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from base.views import ProductApiView,ProductCategoryApiView
+from base.views import ProductApiView,ProductCategoryApiView,register_api_view,login_api_view,logout_api_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('product/',ProductApiView.as_view({'get':'list','post':'create'})),
     path('product/<int:pk>/',ProductApiView.as_view({'get':'retrieve','put':'update','patch':'partial_update','delete':'destroy'})),
     path('product-category/',ProductCategoryApiView.as_view({'get':'list','post':'create'})),
-    path('product-category/<int:pk>/',ProductCategoryApiView.as_view({'put':'update','delete':'destroy','get':'retrieve'}))
+    path('product-category/<int:pk>/',ProductCategoryApiView.as_view({'put':'update','delete':'destroy','get':'retrieve'})),
+    path('register/',register_api_view),
+    path('login/',login_api_view),
+    path('logout/',logout_api_view)
 ]
